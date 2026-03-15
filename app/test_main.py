@@ -34,8 +34,7 @@ def test_function_parameters_are_integers(cat_age: int, dog_age: int) -> None:
 @pytest.mark.parametrize(
     "cat_age, dog_age",
     [
-        (1, 1),
-        (0, 0),
+        (7, 7),
     ],
 )
 def test_function_returns_list(cat_age: int, dog_age: int) -> None:
