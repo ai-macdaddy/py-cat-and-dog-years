@@ -27,8 +27,8 @@ def get_human_age(cat_age: int, dog_age: int) -> list:
     if cat_age < 0 or dog_age < 0:
         raise ValueError("Both cat_age and dog_age must be non-negative integers.")
 
-    if cat_age > 100 or dog_age > 100:
-        raise ValueError("Both cat_age and dog_age must be less than or equal to 100.")
+    if cat_age > 1000 or dog_age > 1000:
+        raise ValueError("Both cat_age and dog_age must be less than or equal to 1000.")
 
     # Calculate human age for cat
     if cat_age < 15:
