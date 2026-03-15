@@ -21,7 +21,7 @@ from app import main
         (1, (1,)),
     ],
 )
-def test_function_parameters_are_integers(cat_age: int, dog_age: int):
+def test_function_parameters_are_integers(cat_age: int, dog_age: int) -> None:
     with pytest.raises(TypeError):
         main.get_human_age(cat_age, dog_age)
 
@@ -36,7 +36,7 @@ def test_function_parameters_are_integers(cat_age: int, dog_age: int):
         (0, 0),
     ],
 )
-def test_function_returns_list(cat_age: int, dog_age: int):
+def test_function_returns_list(cat_age: int, dog_age: int) -> None:
     assert (
         type(main.get_human_age(cat_age, dog_age)) is list
     ), "The function should return a list"
@@ -58,7 +58,7 @@ def test_function_returns_list(cat_age: int, dog_age: int):
         (100, 100, [21, 17]),
     ],
 )
-def test_function_calculates_human_age_correctly(cat_age: int, dog_age: int, expected: list):
+def test_function_calculates_human_age_correctly(cat_age: int, dog_age: int, expected: list) -> None:
     result = main.get_human_age(cat_age, dog_age)
     assert result == expected, (
         f"Expected {expected} but got {result} "
@@ -76,7 +76,7 @@ def test_function_calculates_human_age_correctly(cat_age: int, dog_age: int, exp
         (1, -1),
     ],
 )
-def test_function_with_negative_ages(cat_age: int, dog_age: int):
+def test_function_with_negative_ages(cat_age: int, dog_age: int) -> None:
     with pytest.raises(ValueError):
         main.get_human_age(cat_age, dog_age)
         print(
@@ -96,6 +96,6 @@ def test_function_with_negative_ages(cat_age: int, dog_age: int):
         (10001, 10002),
     ],
 )
-def test_function_with_large_ages(cat_age: int, dog_age: int):
+def test_function_with_large_ages(cat_age: int, dog_age: int) -> None:
     with pytest.raises(ValueError):
         main.get_human_age(cat_age, dog_age)
