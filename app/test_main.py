@@ -1,7 +1,6 @@
 import pytest
-from app import get_human_age
+from app import main
 
-# Test1
 
 @pytest.mark.parametrize(
     "cat_age, dog_age",
@@ -20,29 +19,31 @@ from app import get_human_age
         (1, True),
         ((1,), 1),
         (1, (1,)),
-    ]
+    ],
 )
 def test_function_parameters_are_integers(cat_age, dog_age):
     with pytest.raises(TypeError):
-        get_human_age(cat_age, dog_age)
-        print(f"Test failed for cat_age={cat_age} and dog_age={dog_age}. "
-              "Both parameters should be integers.")
+        main.get_human_age(cat_age, dog_age)
+
 
 # Test2
+
 
 @pytest.mark.parametrize(
     "cat_age, dog_age",
     [
         (1, 1),
         (0, 0),
-    ]
+    ],
 )
 def test_function_returns_list(cat_age, dog_age):
-    assert type(
-        get_human_age(cat_age, dog_age)
-        ) is list, "The function should return a list"
+    assert (
+        type(main.get_human_age(cat_age, dog_age)) is list
+    ), "The function should return a list"
+
 
 # Test3
+
 
 @pytest.mark.parametrize(
     "cat_age, dog_age, expected",
@@ -52,33 +53,40 @@ def test_function_returns_list(cat_age, dog_age):
         (15, 15, [1, 1]),
         (23, 23, [1, 1]),
         (24, 24, [2, 2]),
-        (27, 27, [2, 2]),
-        (28, 28, [3, 2]),
-        (32, 29, [3, 3]),
+        (27, 28, [2, 2]),
+        (28, 29, [3, 3]),
         (100, 100, [21, 17]),
-    ]
+    ],
 )
 def test_function_calculates_human_age_correctly(cat_age, dog_age, expected):
-    result = get_human_age(cat_age, dog_age)
-    assert result == expected, f"Expected {expected} but got "
-    f"{result} for cat_age={cat_age} and dog_age={dog_age}"
+    result = main.get_human_age(cat_age, dog_age)
+    assert result == expected, (
+        f"Expected {expected} but got {result} "
+        f"for cat_age={cat_age} and dog_age={dog_age}"
+    )
+
 
 # Test4
+
 
 @pytest.mark.parametrize(
     "cat_age, dog_age",
     [
         (-1, 1),
         (1, -1),
-    ]
+    ],
 )
 def test_function_with_negative_ages(cat_age, dog_age):
     with pytest.raises(ValueError):
-        get_human_age(cat_age, dog_age)
-        print("Test failed for negative ages. "
-        "Both cat_age and dog_age should be non-negative integers.")
+        main.get_human_age(cat_age, dog_age)
+        print(
+            "Test failed for negative ages. "
+            "Both cat_age and dog_age should be non-negative integers."
+        )
+
 
 # Test5
+
 
 @pytest.mark.parametrize(
     "cat_age, dog_age",
@@ -86,9 +94,8 @@ def test_function_with_negative_ages(cat_age, dog_age):
         (101, 102),
         (1001, 1002),
         (10001, 10002),
-    ]
+    ],
 )
 def test_function_with_large_ages(cat_age, dog_age):
     with pytest.raises(ValueError):
-        get_human_age(cat_age, dog_age)
-        print("Ages are out of real animal life range.")
+        main.get_human_age(cat_age, dog_age)
