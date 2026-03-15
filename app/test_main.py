@@ -83,12 +83,16 @@ def test_function_with_negative_ages(cat_age: int, dog_age: int) -> None:
 
 
 @pytest.mark.parametrize(
-    "cat_age, dog_age",
+    "cat_age, dog_age, expected",
     [
-        (1001, 1002),
-        (10001, 10002),
+        (1000, 1000, [246, 197]),
+        (5000, 5000, [1246, 997]),
+        (10000, 10000, [2496, 1997]),
+        (100000, 100000, [24996, 19997]),
+        (1000000, 1000000, [249996, 199997]),
     ],
 )
-def test_function_with_large_ages(cat_age: int, dog_age: int) -> None:
-    with pytest.raises(ValueError):
-        main.get_human_age(cat_age, dog_age)
+def test_function_with_large_ages(cat_age: int, dog_age: int, expected: list) -> None:
+    assert(
+        main.get_human_age(cat_age, dog_age) == expected
+    ), f"Expected {expected} but got {main.get_human_age(cat_age, dog_age)}"
